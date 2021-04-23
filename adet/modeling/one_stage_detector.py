@@ -2,7 +2,7 @@ import logging
 from torch import nn
 
 from detectron2.modeling.meta_arch.build import META_ARCH_REGISTRY
-from detectron2.modeling import ProposalNetwork, GeneralizedRCNN
+from detectron2.modeling import ProposalNetwork1, GeneralizedRCNN
 from detectron2.utils.events import get_event_storage
 from detectron2.utils.logger import log_first_n
 from detectron2.modeling.postprocessing import detector_postprocess as d2_postprocesss
@@ -36,7 +36,7 @@ def detector_postprocess(results, output_height, output_width, mask_threshold=0.
 
 
 @META_ARCH_REGISTRY.register()
-class OneStageDetector(ProposalNetwork):
+class OneStageDetector(ProposalNetwork1):
     """
     Same as :class:`detectron2.modeling.ProposalNetwork`.
     Uses "instances" as the return key instead of using "proposal".
