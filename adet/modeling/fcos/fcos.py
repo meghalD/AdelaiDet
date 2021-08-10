@@ -93,7 +93,7 @@ class FCOS(nn.Module):
                         logits_pred, reg_pred, ctrness_pred,
                         locations, images.image_sizes, top_feats
                     )
-            return results        
+                return results        
             else:
                 results, losses = self.fcos_outputs.losses(
                     logits_pred, reg_pred, ctrness_pred,
