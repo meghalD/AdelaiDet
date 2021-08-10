@@ -79,7 +79,11 @@ class FCOS(nn.Module):
         logits_pred, reg_pred, ctrness_pred, top_feats, bbox_towers = self.fcos_head(
             features, top_module, self.yield_proposal
         )
-
+         score_maps = {
+            "box_cls": logits_pred,
+            "box_regression": reg_pred,
+            "centerness": ctrness_pred
+        }
         results = {}
         if self.yield_proposal:
             results["features"] = {
@@ -88,12 +92,8 @@ class FCOS(nn.Module):
 
         if self.training:
             if gt_instances is None:
-                with torch.no_grad():
-                    results["proposals"] = self.fcos_outputs.predict_proposals(
-                        logits_pred, reg_pred, ctrness_pred,
-                        locations, images.image_sizes, top_feats
-                    )
-                return results        
+                
+                return score_maps        
             else:
                 results, losses = self.fcos_outputs.losses(
                     logits_pred, reg_pred, ctrness_pred,
@@ -106,7 +106,7 @@ class FCOS(nn.Module):
                             logits_pred, reg_pred, ctrness_pred,
                             locations, images.image_sizes, top_feats
                         )
-                return results, losses            
+                return results, losses , score_maps       
         else:
             results = self.fcos_outputs.predict_proposals(
                 logits_pred, reg_pred, ctrness_pred,
