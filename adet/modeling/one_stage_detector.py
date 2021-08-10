@@ -2,7 +2,7 @@ import logging
 from torch import nn
 
 from detectron2.modeling.meta_arch.build import META_ARCH_REGISTRY
-from detectron2.modeling import ProposalNetwork1, GeneralizedRCNN, ProposalNetwork_DA
+from detectron2.modeling import ProposalNetwork1, GeneralizedRCNN, ProposalNetwork_DA, ProposalNetwork_DA_CA
 from detectron2.utils.events import get_event_storage
 from detectron2.utils.logger import log_first_n
 from detectron2.modeling.postprocessing import detector_postprocess as d2_postprocesss
