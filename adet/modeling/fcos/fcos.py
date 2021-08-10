@@ -79,7 +79,7 @@ class FCOS(nn.Module):
         logits_pred, reg_pred, ctrness_pred, top_feats, bbox_towers = self.fcos_head(
             features, top_module, self.yield_proposal
         )
-         score_maps = {
+        score_maps = {
             "box_cls": logits_pred,
             "box_regression": reg_pred,
             "centerness": ctrness_pred
