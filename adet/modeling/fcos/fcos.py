@@ -87,7 +87,7 @@ class FCOS(nn.Module):
             }
 
         if self.training:
-            if gt_instances=None:
+            if gt_instances is None:
                 with torch.no_grad():
                     results["proposals"] = self.fcos_outputs.predict_proposals(
                         logits_pred, reg_pred, ctrness_pred,
