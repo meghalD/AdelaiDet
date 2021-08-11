@@ -113,7 +113,7 @@ class FCOS(nn.Module):
                 locations, images.image_sizes, top_feats
             )
 
-            return results, {},{}
+            return results, {},score_maps
 
     def compute_locations(self, features):
         locations = []
