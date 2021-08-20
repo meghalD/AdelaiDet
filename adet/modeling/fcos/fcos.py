@@ -93,7 +93,7 @@ class FCOS(nn.Module):
         if self.training:
             if gt_instances is None:
                 
-                return score_maps        
+                return score_maps, results, {}  
             else:
                 results, losses = self.fcos_outputs.losses(
                     logits_pred, reg_pred, ctrness_pred,
