@@ -36,7 +36,7 @@ def detector_postprocess(results, output_height, output_width, mask_threshold=0.
 
 
 @META_ARCH_REGISTRY.register()
-class OneStageDetector(ProposalNetwork):
+class OneStageDetector(ProposalNetwork_DA):
     """
     Same as :class:`detectron2.modeling.ProposalNetwork`.
     Uses "instances" as the return key instead of using "proposal".
